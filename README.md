@@ -1,4 +1,6 @@
-﻿# First Extension For HBuilderX
+## 2020-09-05 d-alert 自定义弹框alert
+
+# First Extension For HBuilderX
 开发文档参考：[https://hx.dcloud.net.cn](https://hx.dcloud.net.cn)
 
 本示例使用步骤：
