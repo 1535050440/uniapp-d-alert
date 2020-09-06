@@ -1,24 +1,23 @@
 ## 2020-09-06 d-alert 自定义弹框alert showModel
 
-#### 1.使用组件（需要在每个页面使用）（样式使用scss）
+
+#### 1. 使用 （样式使用scss）
 ````
 
 <d-alert></d-alert>
 
-````
-#### 2. js中调用
-````
-		this.$showModal({
-		  content: '这是一个自定义弹框',
-		  showCancel:false,
-		  success(res) {
-			if (res.confirm) {
-			  console.log('用户点击确定')
-			} else if (res.cancel) {
-			  console.log('用户点击取消')
-			}
-		  }
-		})
+
+this.$showModal({
+  content: '这是一个自定义弹框',
+  showCancel:false,
+  success(res) {
+    if (res.confirm) {
+      console.log('用户点击确定')
+    } else if (res.cancel) {
+      console.log('用户点击取消')
+    }
+  }
+})
 
 ````
 
