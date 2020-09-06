@@ -1,11 +1,95 @@
-## 2020-09-05 d-alert 自定义弹框alert
+## 2020-09-06 d-alert 自定义弹框alert showModel
 
-# First Extension For HBuilderX
-开发文档参考：[https://hx.dcloud.net.cn](https://hx.dcloud.net.cn)
+#### 1.使用组件（需要在每个页面使用）（样式使用scss）
+````
 
-本示例使用步骤：
-1. 打开本示例工程，点击工具栏的运行按钮，或者按下快捷键`Ctrl+r`，会打开一个新HBuilderX窗体，新窗体将加载这个插件
-2. 在新窗体中打开一个文档，点右键，菜单底部会有一个新的菜单项`hello world`
-3. 点击`hello world`，会弹出一个对话框
-4. 在`extension.js`中可以修改插件的代码逻辑，在`package.json`中可以修改插件的配置
-5. 修改这些代码或配置后，目前不支持热修改。需要点击工具栏的运行按钮，或者按下快捷键`Ctrl+r`，停止运行，然后再次重新运行。一般推荐连续按`Ctrl+r`
+<d-alert></d-alert>
+
+````
+#### 2. js中调用
+````
+		this.$showModal({
+		  content: '这是一个自定义弹框',
+		  showCancel:false,
+		  success(res) {
+			if (res.confirm) {
+			  console.log('用户点击确定')
+			} else if (res.cancel) {
+			  console.log('用户点击取消')
+			}
+		  }
+		})
+
+````
+
+#### 3.放置在main,js文件中 必须先引入Vuex 
+````
+import Vuex from 'vuex'
+import store from './store'
+
+Vue.prototype.$store = store
+
+import initModal from "@/store/myAlert.js";
+initModal(Vue);
+````
+
+----
+| 参数       | 说明   |类型    |  默认值 |
+| --------   | -----:  |-----:  | :----:  |
+| title    | 标题 |String  |   ''    |
+| content     | 内容 | String |   '暂无' |
+| showCancel     | 是否显示取消按钮 | Boolean |   true |
+| cancelText    | 取消按钮的文字 | String  |  '取消'     |
+| cancelColor    | 取消按钮的文字颜色 | HexColor  |  '#000000'     |
+| confirmText    | 确定按钮的文字 | String  |  '确定'     |
+| confirmColor    | 确定按钮的文字颜色 | HexColor  |  '#762cd9'     |
+| success    | 接口调用成功的回调函数 | Function  |  ''     |
+| hideTabBar    | 是否隐藏tabBar在APP和小程序中隐藏tabBar 可以让遮罩层全屏 | Boolean  |  ''     |
+
+
+
+
+------
+
+
+#### 注
+（非原创）链接：https://www.cnblogs.com/vip-deng-vip/
+
+------
+##
+````
+
+this.$showModal({
+    title:"我是标题",
+    content:'我内容',
+    showCancel:true,
+    cancelText:"取消",
+    cancelColor:"#000000",
+    confirmText:"确定",
+    confirmColor:"red",
+    hideTabBar:true,
+    success:function(res){
+        if(res.confirm){
+            wx.showToast({
+                title: '点击了确定',
+                icon: 'none',
+                duration: 2000
+            })
+        }else{
+            wx.showToast({
+                title: '点击了取消',
+                icon: 'none',
+                duration: 2000
+            })
+        }
+    },
+})
+
+````
+
+## 更新日志
+
+* 2020年09月06日 v1.0.0
+    *  增加自定义弹框（随意修改弹框样式）
+	*  优化细节
+

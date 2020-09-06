@@ -1,6 +1,6 @@
 @echo off
 title digitalrain
-color 0b
+color 0a
 setlocal ENABLEDELAYEDEXPANSION
 for /l %%i in (0) do (
 set "line="

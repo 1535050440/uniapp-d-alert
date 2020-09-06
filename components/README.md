@@ -1,6 +1,15 @@
-﻿# First Extension For HBuilderX
+# First Extension For HBuilderX
 开发文档参考：[https://hx.dcloud.net.cn](https://hx.dcloud.net.cn)
 
+````
+import store from './store'
+Vue.prototype.$store = store
+
+import initModal from "@/store/myAlert.js";
+// import showModal from '@/components/d-alert/d-alert';
+
+initModal(Vue);
+````
 本示例使用步骤：
 1. 打开本示例工程，点击工具栏的运行按钮，或者按下快捷键`Ctrl+r`，会打开一个新HBuilderX窗体，新窗体将加载这个插件
 2. 在新窗体中打开一个文档，点右键，菜单底部会有一个新的菜单项`hello world`

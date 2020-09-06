@@ -1,23 +1,26 @@
 <template>
-	<view class="_showModal" v-show="show">
+	<view class="dAlert" v-show="show">
 		<!--  -->
-		<view class="wrapperAlert" >
-			<view class="wrapperAlertBox" @click="closeModal" @touchmove.stop.prevent="">
-				<view class="wrapperAlertBoxWrapper">
-					<view class="wrapperAlertBoxWrapperTop">
-						{{title}}
-					</view>
-					<view class="wrapperAlertBoxWrapperCenter">
-						{{content}}
-					</view>
+		<view class="wrapperAlert" @click="closeModal">
+			<view class="wrapperAlertBox" @click.stop="" @touchmove.stop.prevent="">
+				<view style="width: 100%;height: 50rpx;"></view>
+				<view class="wrapperAlertBoxTitle" v-if="title">
+					{{title}}
 				</view>
 				
+				<view class="wrapperAlertBoxCenter">
+					{{content}}
+				</view>
+				<view class="wrapperAlertBoxBit"></view>
+				
 				<view class="wrapperAlertBoxFooter">
-					<view class="wrapperAlertBoxFooterBox"  v-show="showCancel" :style="cancelColor" @click.stop="clickBtn('cancel')">{{cancelText}}</view>
-					<view class="wrapperAlertBoxFooterBit"></view>
+					<view class="wrapperAlertBoxFooterBox"  v-if="showCancel" :style="cancelColor" @click.stop="clickBtn('cancel')">{{cancelText}}</view>
+					<view class="wrapperAlertBoxFooterBit" v-if="showCancel"></view>
 					<view class="wrapperAlertBoxFooterBox" :style="confirmColor" @click.stop="clickBtn('confirm')">{{confirmText}}</view>
 				</view>
+				
 			</view>
+		
 		</view>
 		<!--  -->
 		<view class="maskHiddenmask" v-show="show"></view>
@@ -64,7 +67,6 @@
 				if (e==true) {
 					this.alertStatus = true
 				}
-				
 			}
 		},
 		methods:{
@@ -72,8 +74,8 @@
 				this.$modalStore.commit('hideModal')
 			},
 			clickBtn(res){
-				this.$modalStore.commit('hideModal')
 				this.$modalStore.commit('success',res)
+				this.$modalStore.commit('hideModal')
 			},
 			demo(){
 				this.alertStatus = this.alertStatus==true?false:true
@@ -94,7 +96,7 @@
 		right: 0;
 		bottom: 0;
 		background-color: #000;
-		opacity: 0.6;
+		opacity: 0.4;
 		transition: background-color .15s linear;
 	}
 	
@@ -105,60 +107,48 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		// background-color: #000;
 		transition: background-color .15s linear;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		
 		.wrapperAlertBox {
-			width: 600rpx;
-			height: 531rpx;
-			// background-color: red;
-			background: url('https://cdn.chexiang365.net/static/wx/alert.png') no-repeat;
-			background-size: 100% 531rpx;
-			padding-top: 100rpx;
-			position: relative;
-			
-			.wrapperAlertBoxWrapper {
+			width: 80%;
+			background-color: #fff;
+			border-radius: 15rpx;
+			background-image: linear-gradient(-27deg,#fff,#762cd9);
+			background-image: linear-gradient(-27deg,#fff,pink);
+			background-image: linear-gradient(-27deg,#fff,pink);
+			.wrapperAlertBoxTitle {
 				width: 100%;
-				height: 300rpx;
-				// background-color: yellow;
-				padding: 0 80rpx;
-				
-				.wrapperAlertBoxWrapperTop {
-					width: 100%;
-					height: 100rpx;
-					// background-color: #9bf;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					//
-					font-size:35rpx;
-					font-family:Source Han Sans CN;
-					font-weight:bold;
-					color:rgba(77,72,71,1);
-				}
-				.wrapperAlertBoxWrapperCenter {
-					width: 100%;
-					height: 200rpx;
-					// background-color: red;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					text-align: center;
-					line-height: 50rpx;
-				}
+				height: 30rpx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #762cd9;
 			}
-		
-			.wrapperAlertBoxFooter {
-				position: absolute;
-				bottom:0;
+			.wrapperAlertBoxCenter {
 				width: 100%;
-				height: 115rpx;
+				height: 135rpx;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: #C0C0C0;
+				color: red;
+				
+			}
+			.wrapperAlertBoxBit {
+				width: 100%;
+				height: 1rpx;
+				background-color: #f2f2f2;
+			}
+			
+			.wrapperAlertBoxFooter {
+				width: 100%;
+				height: 100rpx;
 				// background-color: red;
 				display: flex;
-				justify-content: space-between;
+				justify-content: space-around;
 				align-items: center;
 				.wrapperAlertBoxFooterBox {
 					width: 290rpx;
@@ -170,10 +160,14 @@
 				}
 				.wrapperAlertBoxFooterBit {
 					width:1rpx;
-					height:30rpx;
-					background:rgba(77,72,71,1);
+					height:40rpx;
+					background:#f2f2f2;
 				}
 			}
+			
 		}
+		
+	
+	
 	}
 </style>
