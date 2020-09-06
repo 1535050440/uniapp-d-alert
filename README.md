@@ -2,7 +2,7 @@
 
 
 #### 1. 使用 （样式使用scss）
-````
+````text
 
 <d-alert></d-alert>
 
